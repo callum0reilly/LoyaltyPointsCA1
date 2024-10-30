@@ -10,7 +10,7 @@ public class LoyaltyPoints extends HttpServlet {
 
     public static void main(String[] args) {
     }
-
+//practice commit and push
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
     }
