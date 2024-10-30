@@ -1,0 +1,59 @@
+<project name="TomcatTemplate" basedir="." default="deploy">
+
+    <!-- Extract the project name from the full directory path -->
+    <target name="get-project-name">
+        <property name="project.basedir" value="${user.dir}"/>
+        <basename property="project.name" file="${project.basedir}"/>
+        <echo message="Project Name: ${project.name}"/>
+    </target>
+
+    <!-- Get the deploy path from the environment variable -->
+    <target name="get-deploy-path">
+        <property environment="env"/>
+        <property name="project.deploy.path" value="${env.TOMCAT_DEPLOY_PATH}"/>
+        <echo message="Deploy Path: ${project.deploy.path} "/>
+    </target>
+
+    <!-- Define a build directory -->
+    <target name="set-build-dir" depends="get-project-name, get-deploy-path">
+        <property name="build.dir" value="${project.deploy.path}/${project.name}"/>
+        <echo message="Build Directory: ${build.dir}"/>
+    </target>
+
+    <!-- Create tomcat file structure -->
+    <target name="init" depends="set-build-dir">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.dir}/WEB-INF"/>
+        <mkdir dir="${build.dir}/WEB-INF/classes"/>
+    </target>
+
+    <!-- Copy HTML files from ./resources to build/{project_name}/ -->
+    <target name="copy-html" depends="init">
+        <copy todir="${build.dir}">
+            <fileset dir="resources">
+                <include name="**/*.html"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Copy XML files from ./resources to {project_name}/WEB-INF/ -->
+    <target name="copy-xml" depends="copy-html">
+        <copy todir="${build.dir}/WEB-INF">
+            <fileset dir="resources">
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Copy class files to {project_name}/WEB-INF/classes/ -->
+    <target name="copy-classes" depends="copy-xml">
+        <copy todir="${build.dir}/WEB-INF/classes">
+            <fileset dir="out/production/${project.name}">
+                <include name="**/*.class"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- deploy target -->
+    <target name="deploy" depends="copy-classes"/>
+</project>
