@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - Loyalty Card</title>
+</head>
+<body>
+<header>
+  <h1>Welcome! </h1>
+</header>
+
+<section id="actions">
+  <h2>Manage Your Loyalty Points</h2>
+
+
+  <div id="addPointsSection">
+    <h3>Add Points from Receipt</h3>
+    <form action="/CA1/FormAction" method="get">
+      <input type="hidden" name="action" value="addPoints">
+      <label for="addPoints">Points to Add:</label>
+      <input type="number" id="addPoints" name="points" min="1" required>
+      <button type="submit">Add Points</button>
+    </form>
+  </div>
+
+
+  <div id="spendPointsSection">
+    <h3>Spend Points</h3>
+    <form action="/CA1/FormAction" method="get">
+      <input type="hidden" name="action" value="spendPoints">
+      <label for="spendPoints">Points to Spend:</label>
+      <input type="number" id="spendPoints" name="points" min="1" required>
+      <button type="submit">Spend Points</button>
+    </form>
+  </div>
+</section>
+
+
+
+</body>
+</html>
