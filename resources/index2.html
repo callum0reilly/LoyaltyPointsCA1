@@ -19,7 +19,7 @@
     <form action="/CA1/FormAction" method="get">
       <input type="hidden" name="action" value="addPoints">
       <label for="addPoints">Points to Add:</label>
-      <input type="number" id="addPoints" name="points" min="1" required>
+      <input type="number" id="addPoints" name="addPoints" min="1" required>
       <button type="submit">Add Points</button>
     </form>
   </div>
@@ -29,11 +29,13 @@
     <h3>Spend Points</h3>
     <form action="/CA1/FormAction" method="get">
       <input type="hidden" name="action" value="spendPoints">
+      <input type="hidden" name="username" value="">
       <label for="spendPoints">Points to Spend:</label>
-      <input type="number" id="spendPoints" name="points" min="1" required>
+      <input type="number" id="spendPoints" name="removePoints" min="1" required>
       <button type="submit">Spend Points</button>
     </form>
   </div>
+
 </section>
 
 
